@@ -54,3 +54,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        var token = ""
+        deviceToken.forEach {
+            token.append(String(format: "%02.2hhx", arguments: [$0]))
+        }
+        print("deviceToken: ", token)
+    }
+}
