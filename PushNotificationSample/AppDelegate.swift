@@ -80,3 +80,18 @@ extension AppDelegate {
         }
     }
 }
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    // アプリがBackgroundのときに通知をタップした
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        // response.notification.request.content.userInfo を使って遷移とかする
+        completionHandler()
+    }
+
+    // Foregroundで通知を受けた
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        // 画面遷移とか、アラート表示とかする
+        // 必要に応じて.alertを指定することでアプリ起動中にPUSH通知を表示させることもできる
+        completionHandler(.alert)
+    }
+}
