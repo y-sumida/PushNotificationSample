@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 
         let center = UNUserNotificationCenter.current()
+        center.delegate = self
         center.requestAuthorization(options: [.sound, .alert, .badge], completionHandler: { (granted, error) in
             if granted {
                 DispatchQueue.main.async {
