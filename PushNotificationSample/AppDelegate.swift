@@ -67,5 +67,9 @@ extension AppDelegate {
         // リモートPUSHが"届いた"ときに呼ばれる
         // 通知をタップした時ではない
         // userInfoを使って必要な処理（遷移とかリロードとか）をする
+        guard let dict = userInfo as? [String: Any] else { return }
+        let json = try! JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+        let notification = try? JSONDecoder().decode(PushNotificationPayload.self, from: json)
+        dump(notification)
     }
 }
