@@ -62,4 +62,10 @@ extension AppDelegate {
         }
         print("deviceToken: ", token)
     }
+
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        // リモートPUSHが"届いた"ときに呼ばれる
+        // 通知をタップした時ではない
+        // userInfoを使って必要な処理（遷移とかリロードとか）をする
+    }
 }
