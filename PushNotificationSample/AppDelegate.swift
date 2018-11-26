@@ -71,5 +71,12 @@ extension AppDelegate {
         let json = try! JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
         let notification = try? JSONDecoder().decode(PushNotificationPayload.self, from: json)
         dump(notification)
+
+        let state = UIApplication.shared.applicationState
+        switch state {
+        case .active: () // アクティブな時
+        case .background: () // バックグラウンドの時
+        case .inactive: () // 通知をタップした時
+        }
     }
 }
