@@ -67,18 +67,7 @@ extension AppDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         // リモートPUSHが"届いた"ときに呼ばれる
         // 通知をタップした時ではない
-        // userInfoを使って必要な処理（遷移とかリロードとか）をする
-        guard let dict = userInfo as? [String: Any] else { return }
-        let json = try! JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
-        let notification = try? JSONDecoder().decode(PushNotificationPayload.self, from: json)
-        dump(notification)
-
-        let state = UIApplication.shared.applicationState
-        switch state {
-        case .active: () // アクティブな時
-        case .background: () // バックグラウンドの時
-        case .inactive: () // 通知をタップした時
-        }
+        handleNotification(userInfo: userInfo)
     }
 }
 
@@ -94,5 +83,24 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         // 画面遷移とか、アラート表示とかする
         // 必要に応じて.alertを指定することでアプリ起動中にPUSH通知を表示させることもできる
         completionHandler(.alert)
+    }
+
+    func handleNotification(userInfo: [AnyHashable: Any]) {
+        guard let dict = userInfo as? [String: Any] else { return }
+        do {
+            let json = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+            let notification = try JSONDecoder().decode(PushNotificationPayload.self, from: json)
+            dump(notification)
+        } catch let e {
+            // エラー処理
+            print(e)
+        }
+
+        let state = UIApplication.shared.applicationState
+        switch state {
+        case .active: () // アクティブな時
+        case .background: () // バックグラウンドの時
+        case .inactive: () // 通知をタップした時
+        }
     }
 }
