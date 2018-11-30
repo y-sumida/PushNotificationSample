@@ -72,9 +72,9 @@ extension AppDelegate {
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
-    // アプリがBackgroundのときに通知をタップした
+    // 通知をタップした
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        // response.notification.request.content.userInfo を使って遷移とかする
+        handleNotification(userInfo: response.notification.request.content.userInfo)
         completionHandler()
     }
 
@@ -98,9 +98,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
         let state = UIApplication.shared.applicationState
         switch state {
-        case .active: () // アクティブな時
-        case .background: () // バックグラウンドの時
-        case .inactive: () // 通知をタップした時
+        case .active: print("active")// アクティブな時
+        case .background: print("background")// バックグラウンドの時
+        case .inactive: print("inactive")// "バックグラウンドで"通知をタップした時
         }
     }
 }
