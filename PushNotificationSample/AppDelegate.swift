@@ -67,14 +67,14 @@ extension AppDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         // リモートPUSHが"届いた"ときに呼ばれる
         // 通知をタップした時ではない
-        handleNotification(userInfo: userInfo)
+        handleNotification(userInfo: userInfo, tapped: false)
     }
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     // 通知をタップした
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        handleNotification(userInfo: response.notification.request.content.userInfo)
+        handleNotification(userInfo: response.notification.request.content.userInfo, tapped: true)
         completionHandler()
     }
 
@@ -85,7 +85,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         completionHandler(.alert)
     }
 
-    func handleNotification(userInfo: [AnyHashable: Any]) {
+    func handleNotification(userInfo: [AnyHashable: Any], tapped: Bool) {
         guard let dict = userInfo as? [String: Any] else { return }
         do {
             let json = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
@@ -98,7 +98,14 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
         let state = UIApplication.shared.applicationState
         switch state {
-        case .active: print("active")// アクティブな時
+        case .active:
+            if tapped {// アクティブな時に受信してタップした
+                // 例えば特定画面以外だったらタップで指定画面へ遷移とか
+                print("active tapped")
+            } else {// アクティブな時に受信した
+                // 例えば特定画面だったらリロードする
+                print("active not tapped")
+            }
         case .background: print("background")// バックグラウンドの時
         case .inactive: print("inactive")// "バックグラウンドで"通知をタップした時
         }
