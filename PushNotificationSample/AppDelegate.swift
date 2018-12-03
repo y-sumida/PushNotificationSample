@@ -99,12 +99,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let state = UIApplication.shared.applicationState
         switch state {
         case .active:
-            if tapped {// アクティブな時に受信してタップした
+            if let vc = UIApplication.rootViewController() as? ViewController2 {
+                // 例えば特定画面だったらリロードする
+                vc.reload()
+            } else if tapped {// アクティブな時に受信してタップした
                 // 例えば特定画面以外だったらタップで指定画面へ遷移とか
                 print("active tapped")
-            } else {// アクティブな時に受信した
-                // 例えば特定画面だったらリロードする
-                print("active not tapped")
             }
         case .background: print("background")// バックグラウンドの時
         case .inactive: print("inactive")// "バックグラウンドで"通知をタップした時
