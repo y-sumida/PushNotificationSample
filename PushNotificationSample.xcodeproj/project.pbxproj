@@ -14,6 +14,7 @@
 		A925295B21A99BC900BD5103 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A925295921A99BC900BD5103 /* LaunchScreen.storyboard */; };
 		A9373BD121AC326900E53412 /* PushNotificationPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9373BD021AC326900E53412 /* PushNotificationPayload.swift */; };
 		A9373BD321B569B300E53412 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9373BD221B569B300E53412 /* UIApplicationExtension.swift */; };
+		A9373BD521B56C6400E53412 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9373BD421B56C6400E53412 /* ViewController2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		A9373BCF21A99D1E00E53412 /* PushNotificationSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PushNotificationSample.entitlements; sourceTree = "<group>"; };
 		A9373BD021AC326900E53412 /* PushNotificationPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationPayload.swift; sourceTree = "<group>"; };
 		A9373BD221B569B300E53412 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
+		A9373BD421B56C6400E53412 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				A9373BD021AC326900E53412 /* PushNotificationPayload.swift */,
 				A9373BCF21A99D1E00E53412 /* PushNotificationSample.entitlements */,
 				A925295221A99BC700BD5103 /* ViewController.swift */,
+				A9373BD421B56C6400E53412 /* ViewController2.swift */,
 				A9373BD221B569B300E53412 /* UIApplicationExtension.swift */,
 			);
 			path = PushNotificationSample;
@@ -148,6 +151,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9373BD521B56C6400E53412 /* ViewController2.swift in Sources */,
 				A925295321A99BC700BD5103 /* ViewController.swift in Sources */,
 				A925295121A99BC700BD5103 /* AppDelegate.swift in Sources */,
 				A9373BD321B569B300E53412 /* UIApplicationExtension.swift in Sources */,
