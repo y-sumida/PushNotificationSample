@@ -91,23 +91,23 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             let json = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
             let notification = try JSONDecoder().decode(PushNotificationPayload.self, from: json)
             dump(notification)
+
+            let state = UIApplication.shared.applicationState
+            switch state {
+            case .active:
+                if let vc = UIApplication.rootViewController() as? ViewController2 {
+                    // 例えば特定モードで特定画面だったらリロードする
+                    vc.reload()
+                } else if tapped {// アクティブな時に受信してタップした
+                    // 例えば特定画面以外だったらタップで指定画面へ遷移とか
+                    print("active tapped")
+                }
+            case .background: print("background")// バックグラウンドの時
+            case .inactive: print("inactive")// "バックグラウンドで"通知をタップした時
+            }
         } catch let e {
             // エラー処理
             print(e)
-        }
-
-        let state = UIApplication.shared.applicationState
-        switch state {
-        case .active:
-            if let vc = UIApplication.rootViewController() as? ViewController2 {
-                // 例えば特定画面だったらリロードする
-                vc.reload()
-            } else if tapped {// アクティブな時に受信してタップした
-                // 例えば特定画面以外だったらタップで指定画面へ遷移とか
-                print("active tapped")
-            }
-        case .background: print("background")// バックグラウンドの時
-        case .inactive: print("inactive")// "バックグラウンドで"通知をタップした時
         }
     }
 }
