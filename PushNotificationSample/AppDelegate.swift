@@ -95,7 +95,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             let state = UIApplication.shared.applicationState
             switch state {
             case .active:
-                if let vc = UIApplication.rootViewController() as? ViewController2 {
+                if let vc = UIApplication.rootViewController() as? ViewController2,
+                    notification.mode == .mode1,
+                    tapped == false {
                     // 例えば特定モードで特定画面だったらリロードする
                     vc.reload()
                 } else if tapped {// アクティブな時に受信してタップした
